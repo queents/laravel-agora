@@ -9,6 +9,7 @@ class Agora
 {
     protected string|int $id;
     protected string|null $channel="agora";
+    protected string|null $uId;
     protected bool $audio=false;
     protected bool $join = false;
 
@@ -41,6 +42,12 @@ class Agora
         return $this;
     }
 
+    public function uId(string $uId): static
+    {
+        $this->uId = $uId;
+        return $this;
+    }
+
     public function token()
     {
         $appID = config('laravel-agora.agora.app_id');
@@ -59,15 +66,12 @@ class Agora
             $currentTimestamp = now()->getTimestamp();
             $privilegeExpiredTs = $currentTimestamp + $expireTimeInSeconds;
 
-            //Generate UID
-            $uid = rand(999, 1999);
-
 
             $token = RtcTokenBuilder::build(
                 appID: $appID,
                 appCertificate: $appCertificate,
                 channelName: $channelName,
-                uid: $uid,
+                uid: $this->uId,
                 role: $role,
                 privilegeExpireTs: $privilegeExpiredTs,
                 type: $this->audio ? 'audio' : 'video'

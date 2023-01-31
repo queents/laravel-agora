@@ -26,7 +26,7 @@ AGORA_APP_CERTIFICATE=
 you can use the class to return your token like
 
 ```php
-Agora::make(id: 1)->token();
+Agora::make(id: 1)->uId(rand(999, 1999))->token();
 ```
 
 it will generate Audio/Video Token as a Publisher
@@ -38,7 +38,7 @@ the channel name will be `agora.USER_ID`
 if you went to join an exists channel use this where id is the user you went to connect with
 
 ```php
-Agora::make(id: 1)->join()->token();
+Agora::make(id: 1)->uId(rand(999, 1999))->join()->token();
 ```
 
 ### Create Audio Only
@@ -46,7 +46,7 @@ Agora::make(id: 1)->join()->token();
 if you went an audio channel only use this
 
 ```php
-Agora::make(id: 1)->join()->audioOnly()->token();
+Agora::make(id: 1)->uId(rand(999, 1999))->join()->audioOnly()->token();
 ```
 
 ### Custom Channel
@@ -54,7 +54,7 @@ Agora::make(id: 1)->join()->audioOnly()->token();
 you can custom your channel name by use 
 
 ```php
-Agora::make(id: 1)->channel('custom')->token()
+Agora::make(id: 1)->uId(rand(999, 1999))->channel('custom')->token()
 ```
 
 than your channel will be `custom.USER_ID`
